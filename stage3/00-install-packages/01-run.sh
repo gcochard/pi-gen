@@ -1,8 +1,7 @@
 #!/bin/bash -e
 
+cp files/unifi-repo.gpg ${ROOTFS_DIR}/etc/apt/trusted.gpg.d/unifi-repo.gpg
 on_chroot << EOF
-update-alternatives --install /usr/bin/x-www-browser \
-  x-www-browser /usr/bin/chromium-browser 86
-update-alternatives --install /usr/bin/gnome-www-browser \
-  gnome-www-browser /usr/bin/chromium-browser 86
+echo 'deb http://archive.raspbian.org/raspbian stretch main contrib non-free rpi' >> /etc/apt/sources.list.d/raspbian_stretch_for_mongodb.list
+echo 'deb https://www.ui.com/downloads/unifi/debian stable ubiquiti' >> /etc/apt/sources.list.d/100-ubnt-unifi.list
 EOF
